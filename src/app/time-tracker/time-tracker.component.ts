@@ -7,7 +7,7 @@ import { TimeTrackerService } from '../services/time-tracker.service';
   templateUrl: './time-tracker.component.html',
   styleUrls: ['./time-tracker.component.scss'],
 })
-export class TimeTrackerComponent implements OnInit, AfterViewInit {
+export class TimeTrackerComponent implements OnInit {
   taskList: Array<TimeTracker> = [];
   interval: any;
   newTask: string = '';
@@ -33,15 +33,6 @@ export class TimeTrackerComponent implements OnInit, AfterViewInit {
     }
     this.setData();
     this.calculateTotalTime();
-  }
-
-  ngAfterViewInit(): void {
-    const modal = document.getElementById('staticBackdrop');
-   if(modal)
-    modal.addEventListener('hidden.bs.modal', () =>{
-      this.addTask();
-  });
-
   }
 
   getData() {
