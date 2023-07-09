@@ -3,18 +3,15 @@
   margin: 5px auto;
 }
 
-.container-bottom {
-  width: 1000px;
-  margin: 5px auto;
-  position: relative;
-  bottom: 0;
-}
 
 .layout {
   background: #f2f6f8;
   height: 100%;
-  overflow-y: scroll;
+  padding-left: 20px;
   padding-bottom: 35px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 }
 
 .card {
@@ -55,11 +52,18 @@
   border: none;
   width: 40px;
   height: 40px;
-  padding: 0;
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
 }
+
+.footer {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 12px;
+  margin: 0 auto; /* Center the footer horizontally */
+  width: 1000px;
+  text-align:right;
+}
+
 
 .timer {
   color: #5056ed;
@@ -79,7 +83,6 @@
 
 .spanIcon {
   font-size: 30px;
-
   position: relative;
   top: -10%;
 }

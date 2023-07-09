@@ -12,10 +12,10 @@
       <div class="card" *ngFor="let task of taskList; index as i">
         <div class="card-body">
           <div class="flex">
-            <h2 class="titleWidth">{{ task.task }}</h2>
+            <h1 class="titleWidth">{{ task.task }}</h1>
             <div style="display:flex;align-items:center;">
               <div class="vr"></div>
-              <div class="timer">{{ task.timer }}</div>
+              <div class="timer">{{ addSpace(task.timer)}}</div>
               <button
                 class="button"
                 [ngStyle]="{
@@ -31,7 +31,7 @@
             </div>
           </div>
           <div class="card-text history">
-            <h2>History</h2>
+            <h1>History</h1>
             <ng-container *ngIf="task.history.length; else template">
               <p *ngFor="let history of task.history.reverse()">
                 <span *ngIf="!history.stopDateAndTime"
@@ -51,19 +51,21 @@
           </div>
         </div>
       </div>
+ 
     </div>
-  
-    <button
-      class="plus-button"
-      title="Add Task"
-      data-bs-toggle="modal"
-      data-bs-target="#staticBackdrop"
-      type="button"
-    >
-      <span aria-hidden="true" class="spanIcon" style="color:white">&plus;</span>
-    </button>
+    <div class="footer">
+      <button
+        class="plus-button"
+        title="Add Task"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+   
+      >
+        <span aria-hidden="true" class="spanIcon" style="color:white">&plus;</span>
+      </button>
+    </div>
+    
   </div>
-  
   <div
     class="modal fade"
     id="staticBackdrop"
@@ -76,13 +78,13 @@
       <div class="modal-content" style="border-radius: 25px;">
         <div class="modal-body">
           <div class="form-group" style="padding:20px 30px;">
-            <label>Enter The Task Name</label>
+            <label style="margin-bottom:10px ;">Enter The Task Name</label>
             <input class="form-control" type="text" [(ngModel)]="newTask" />
             <button
               class="button"
               data-bs-dismiss="modal"
-              style="margin:20px 0;"
-              (click)="addTask()"
+              style="margin:25px 0 0px;"
+              type="button"
             >
               Save
             </button>

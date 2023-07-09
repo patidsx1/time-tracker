@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component,  OnInit } from '@angular/core';
 import { TaskHistory, TimeTracker } from '../models/time-tracker.interface';
 import { TimeTrackerService } from '../services/time-tracker.service';
 
@@ -7,7 +7,7 @@ import { TimeTrackerService } from '../services/time-tracker.service';
   templateUrl: './time-tracker.component.html',
   styleUrls: ['./time-tracker.component.scss'],
 })
-export class TimeTrackerComponent implements OnInit, OnDestroy {
+export class TimeTrackerComponent implements OnInit, AfterViewInit {
   taskList: Array<TimeTracker> = [];
   interval: any;
   newTask: string = '';
@@ -15,15 +15,6 @@ export class TimeTrackerComponent implements OnInit, OnDestroy {
   constructor(private TimeTrackerService: TimeTrackerService) {}
 
   ngOnInit() {
-    // this.taskList = [
-    //   {
-    //     task: 'opening th eforn tned ',
-    //     buttonText: 'Start',
-    //     timer: '00:00:00',
-    //     history: [],
-    //     interval: null,
-    //   },
-    // ];
 
     this.taskList = this.getData();
     if (this.taskList.length) {
@@ -42,6 +33,15 @@ export class TimeTrackerComponent implements OnInit, OnDestroy {
     }
     this.setData();
     this.calculateTotalTime();
+  }
+
+  ngAfterViewInit(): void {
+    const modal = document.getElementById('staticBackdrop');
+   if(modal)
+    modal.addEventListener('hidden.bs.modal', () =>{
+      this.addTask();
+  });
+
   }
 
   getData() {
@@ -117,19 +117,19 @@ export class TimeTrackerComponent implements OnInit, OnDestroy {
   }
 
   addTask() {
-    console.log(this.newTask);
-    this.taskList.push(
-      new TimeTracker({
-        task: this.newTask,
-        // buttonText: 'Start',
-        // timer: '00:00:00',
-        // history: [],
-        // interval: null,
-      })
-    );
-    this.newTask = '';
-    this.setData();
-    this.calculateTotalTime();
+    if(this.newTask)
+    {
+      this.taskList.push(
+        new TimeTracker({
+          task: this.newTask
+        })
+      );
+      this.newTask = '';
+      this.setData();
+
+    }
+  
+
   }
   calculateTotalTime() {
     if (this.taskList.length) {
@@ -149,5 +149,8 @@ export class TimeTrackerComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {}
+  addSpace(str:string){
+    return str.replace(/:/g, " : ") 
+  }
+
 }
