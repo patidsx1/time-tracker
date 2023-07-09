@@ -25,7 +25,7 @@
               >
                 {{ task.buttonText }}
               </button>
-              <button type="button" class="close-button" (click)="deleteTask(i)">
+              <button type="button" title="Delete Task" class="close-button" (click)="deleteTask(i)">
                 <span class="spanIcon" aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -55,6 +55,7 @@
   
     <button
       class="plus-button"
+      title="Add Task"
       data-bs-toggle="modal"
       data-bs-target="#staticBackdrop"
       type="button"
@@ -72,7 +73,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+      <div class="modal-content" style="border-radius: 25px;">
         <div class="modal-body">
           <div class="form-group" style="padding:20px 30px;">
             <label>Enter The Task Name</label>
@@ -80,7 +81,7 @@
             <button
               class="button"
               data-bs-dismiss="modal"
-              style="margin-top:10px;"
+              style="margin:20px 0;"
               (click)="addTask()"
             >
               Save

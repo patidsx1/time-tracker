@@ -143,7 +143,7 @@ export class TimeTrackerComponent implements OnInit, OnDestroy {
                 new Date(hist.startDateAndTime).getTime();
           });
       });
-      this.totalTime = Math.floor(timediff / (1000 * 60 * 60));
+      this.totalTime =  parseFloat((timediff / (1000 * 60 * 60)).toFixed(3));
     } else {
       this.totalTime = 0;
     }
