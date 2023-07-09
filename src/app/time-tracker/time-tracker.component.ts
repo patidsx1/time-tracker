@@ -107,6 +107,10 @@ export class TimeTrackerComponent implements OnInit {
     this.calculateTotalTime();
   }
 
+  reset(){
+    this.newTask='';
+  }
+
   addTask() {
     if(this.newTask)
     {
@@ -119,8 +123,6 @@ export class TimeTrackerComponent implements OnInit {
       this.setData();
 
     }
-  
-
   }
   calculateTotalTime() {
     if (this.taskList.length) {
